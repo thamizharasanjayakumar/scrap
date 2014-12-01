@@ -1,0 +1,20 @@
+sheet = workbook.create_worksheet
+sheet.name = "All Children - Parents Connect App"
+
+title = [ "ID", "Name", "Qualification", "Experience", "Recommendation", "Center name" ,"Address"]
+for i in 1..10 do
+  title += [ "Speciality #{i}"]
+end
+sheet.row(0).concat title
+
+i=1
+j=1
+@doctor.each do |doctor|
+  records = [ "#{j}", "#{doctor.name}", "#{doctor.qua}", "#{doctor.exp}", "#{doctor.rec}", "#{doctor.center_name}", "#{doctor.address}"]
+  doctor.specialities.each do |parent|
+    records += [ "#{parent.spec}"]
+  end
+  sheet.row(i).concat records
+  i+=1
+  j+=1
+end

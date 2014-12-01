@@ -1,0 +1,32 @@
+<h1>Doctor Detail</h1>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Qualification</th>
+		<th>Experience</th>
+		<th>Recommendation</th>
+		<th>Address</th>
+		<th>Spacialization</th>	
+	</tr>
+	<tbody>
+		<% i=1 %> 
+		<% @doctor.each do |doctor|%>
+			<tr>
+				<td> <%= i %> </td>
+				<td><%= doctor.name %></td>
+				<td><%= doctor.qua %></td>
+				<td><%= doctor.exp %></td>
+				<td><%= doctor.rec %></td>
+				<td><b><%= doctor.center_name %></b><br><%= doctor.address %></td>
+				<td>
+					<% @spe = doctor.id %>
+					<% Test.find(@spe).specialities.each do |speciality| %>
+						<%= speciality.spec %>,<br>
+					<% end %>
+				</td>
+			</tr>
+			<% i=i+1 %>
+		<% end %>
+	</tbody>
+</table>
